@@ -20,7 +20,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: cornflowerblue;
+    background-color: #bc6c25;
     color: white;
 }
 
@@ -42,7 +42,7 @@ main {
 
 .input_section>h2 {
     text-align: center;
-    color: cornflowerblue;
+    color: #bc6c25;
 }
 
 .input_section>form>.input {
@@ -50,7 +50,7 @@ main {
 }
 
 .input_section>form>button {
-    background-color: cornflowerblue;
+    background-color: #bc6c25;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -58,10 +58,6 @@ main {
     width: 100%;
     padding: 8px;
     cursor: pointer;
-}
-
-.input_section>form>button>span {
-    font-weight: bold;
 }
 
 .input_section>form>.input>input {
@@ -73,7 +69,7 @@ main {
 
 
 .input_section>form>.input>label {
-    color: cornflowerblue;
+    color: #bc6c25;
     font-weight: bold;
 }
 
@@ -84,7 +80,7 @@ main {
 }
 
 .input_section>form>.input_inline>label {
-    color: cornflowerblue;
+    color: #bc6c25;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -100,15 +96,16 @@ main {
 }
 
 .search_section>h2 {
-    color: cornflowerblue;
+    color: #bc6c25;
 }
 
 .search_section>form {
     padding: 16px;
     width: 100%;
-    display: grid;
-    grid-template-columns: auto 1fr 0.5fr;
-    grid-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .search_section>form>label {
@@ -119,10 +116,11 @@ main {
 .search_section>form>input {
     padding: 5px;
     border-radius: 5px;
+    width: 80%;
 }
 
 .search_section>form>button {
-    background-color: cornflowerblue;
+    background-color: #bc6c25;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -137,7 +135,7 @@ main {
 }
 
 .book_shelf>h2 {
-    color: cornflowerblue;
+    color: #bc6c25;
 }
 
 .book_shelf>.book_list {
@@ -158,18 +156,18 @@ p {
 
 .book_shelf>.book_list>.book_item>.action>button {
     border: 0;
-    padding: 5px;
-    margin: 0 5px 0 0;
+    padding: 4px 12px;
+    margin-right: 8px;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .book_shelf>.book_list>.book_item>.action>.green {
-    background-color: darkgreen;
+    background-color: #386641;
     color: white;
 }
 
 .book_shelf>.book_list>.book_item>.action>.red {
-    background-color: darkred;
+    background-color: #bc4749;
     color: white;
 }
