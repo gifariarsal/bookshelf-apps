@@ -86,7 +86,8 @@ function bookList(books = []) {
          <p>Year : ${book.year}</p>
 
          <div class="action">
-         <button class="green" onclick="toggleBookStatus(${book.id})">Complete</button>
+         <button class="green" onclick="toggleBookStatus(${book.id})">Read</button>
+         <button class="blue" onclick="editBook(${book.id})">Edit</button>
          <button class="red" onclick="deleteBook(${book.id})">Delete</button>
          </div>
          </article>
@@ -101,7 +102,8 @@ function bookList(books = []) {
          <p>Year : ${book.year}</p>
 
          <div class="action">
-         <button class="green" onclick="toggleBookStatus(${book.id})">Incomplete</button>
+         <button class="green" onclick="toggleBookStatus(${book.id})">Unread</button>
+         <button class="blue" onclick="editBook(${book.id})">Edit</button>
          <button class="red" onclick="deleteBook(${book.id})">Delete</button>
          </article>
          `;
@@ -163,14 +165,14 @@ function toggleBookStatus(bookId) {
         books[index].isComplete = false;
         swal(
           'Success',
-          'Your book has been moved to the incomplete shelf',
+          'Your book has been moved to the unread shelf',
           'success'
         );
       } else {
         books[index].isComplete = true;
         swal(
           'Success',
-          'Your book has been moved to the complete shelf',
+          'Your book has been moved to the read shelf',
           'success'
         );
       }
@@ -207,7 +209,8 @@ function searchBook() {
          <p>Year : ${book.year}</p>
 
          <div class="action">
-         <button class="green" onclick="toggleBookStatus(${book.id})">Complete</button>
+         <button class="green" onclick="toggleBookStatus(${book.id})">Read</button>
+         <button class="blue" onclick="editBook(${book.id})">Edit</button>
          <button class="red" onclick="deleteBook(${book.id})">Delete</button>
          </div>
          </article>
@@ -222,7 +225,8 @@ function searchBook() {
          <p>Year : ${book.year}</p>
 
          <div class="action">
-         <button class="green" onclick="toggleBookStatus(${book.id})">Incomplete</button>
+         <button class="green" onclick="toggleBookStatus(${book.id})">Unread</button>
+         <button class="blue" onclick="editBook(${book.id})">Edit</button>
          <button class="red" onclick="deleteBook(${book.id})">Delete</button>
          </article>
          `;
@@ -249,3 +253,64 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener(RENDER_EVENT, () => {
   bookList(books);
 });
+
+const modal = document.getElementById('editBookModal');
+
+const span = document.getElementsByClassName('close')[0];
+
+function editBook(bookId) {
+  modal.style.display = 'block';
+
+  const bookIndex = findBookIndex(bookId);
+  const book = books[bookIndex];
+
+  document.getElementById('editBookId').value = book.id;
+  document.getElementById('editBookTitle').value = book.title;
+  document.getElementById('editBookAuthor').value = book.author;
+  document.getElementById('editBookYear').value = book.year;
+  document.getElementById('editBookIsComplete').checked = book.isComplete;
+}
+
+span.onclick = function () {
+  modal.style.display = 'none';
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};
+
+document
+  .getElementById('editBookForm')
+  .addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const bookId = document.getElementById('editBookId').value;
+    const title = document.getElementById('editBookTitle').value;
+    const author = document.getElementById('editBookAuthor').value;
+    const year = document.getElementById('editBookYear').value;
+    const isComplete = document.getElementById('editBookIsComplete').checked;
+
+    updateBook(bookId, title, author, year, isComplete);
+
+    modal.style.display = 'none';
+  });
+
+  function updateBook(bookId, title, author, year, isComplete) {
+    const bookIndex = findBookIndex(bookId);
+
+    if (bookIndex !== -1) {
+      books[bookIndex].title = title;
+      books[bookIndex].author = author;
+      books[bookIndex].year = parseInt(year, 10);
+      books[bookIndex].isComplete = isComplete;
+
+      saveData();
+      document.dispatchEvent(new Event(RENDER_EVENT));
+
+      swal('Success', 'Book has been updated', 'success');
+    } else {
+      swal('Error', 'Book not found', 'error');
+    }
+  }

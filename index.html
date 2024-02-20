@@ -37,12 +37,10 @@
             <input id="inputBookYear" type="number" required />
           </div>
           <div class="input_inline">
-            <label for="inputBookIsComplete">Finished</label>
+            <label for="inputBookIsComplete">Read</label>
             <input id="inputBookIsComplete" type="checkbox" />
           </div>
-          <button id="bookSubmit" type="submit">
-            Add Book
-          </button>
+          <button id="bookSubmit" type="submit">Add Book</button>
         </form>
       </section>
 
@@ -54,22 +52,50 @@
       </section>
 
       <section class="book_shelf">
-        <h2>Incomplete Shelf</h2>
+        <h2>Unread Shelf</h2>
 
         <div id="incompleteBookshelfList" class="book_list">
-          <article class="book_item">
-          </article>
+          <article class="book_item"></article>
         </div>
       </section>
 
       <section class="book_shelf">
-        <h2>Complete Shelf</h2>
+        <h2>Read Shelf</h2>
 
         <div id="completeBookshelfList" class="book_list">
-          <article class="book_item">
-          </article>
+          <article class="book_item"></article>
         </div>
       </section>
+      <div id="editBookModal" class="modal">
+        <div class="modal-content">
+          <section class="input_section">
+            <form id="editBookForm">
+              <div class="modal-header">
+                <h2>Edit Book</h2>
+                <span class="close">&times;</span>
+              </div>
+              <input type="hidden" id="editBookId" />
+              <div class="input">
+                <label for="editBookTitle">Title:</label>
+                <input type="text" id="editBookTitle" required />
+              </div>
+              <div class="input">
+                <label for="editBookAuthor">Author:</label>
+                <input type="text" id="editBookAuthor" required />
+              </div>
+              <div class="input">
+                <label for="editBookYear">Year:</label>
+                <input type="number" id="editBookYear" required />
+              </div>
+              <div class="input_inline">
+                <label for="editBookIsComplete">Read:</label>
+                <input type="checkbox" id="editBookIsComplete" />
+              </div>
+              <button type="submit">Save Changes</button>
+            </form>
+          </section>
+        </div>
+      </div>
     </main>
 
     <script src="main.js"></script>
